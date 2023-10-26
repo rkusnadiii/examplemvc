@@ -1,0 +1,34 @@
+@model examplemvc.Models.Post
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '@TempData["SuccessMessage"]'
+        });
+    </script>
+}
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '@TempData["ErrorMessage"]'
+        });
+    </script>
+}
+
+<div class="text-center">
+    <form asp-action="UpdatePost" method="post">
+    <label>Title</label> <br>
+    <input type="text" name="title" class="form-control" value="@Model.Title"> <br>
+    <label>Body</label> <br>
+    <textarea name="body" class="form-control">@Model.Body</textarea> <br>
+    <button class="btn btn-primary">Edit</button>
+    </form>
+</div>

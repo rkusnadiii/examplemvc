@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  webapi:
+    build: .
+    ports:
+      - "5000:80"
+      - "5001:443"
+    environment: # see https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md#linux
+      ASPNETCORE_HTTPS_PORT: 5001
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      ASPNETCORE_Kestrel__Certificates__Development__Password: "12345"
+      MSSQL_DB: "test"
+      MSSQL_USER: "sa"
+      MSSQL_PASS: "S1q2l3\\!srv"
+      MSSQL_PORT: "1433"
+      MSSQL_HOST: "localhost"
+    # depends_on:
+      # - sqlserver
+      # - minios3
+  
+  sqlserver:
+    build: 
+      context: .
+      dockerfile: sqlserver.Dockerfile # @see https://docs.docker.com/compose/compose-file/compose-file-v3/#context
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "S1q2l3\\!srv"
+      ACCEPT_EULA: "Y"
+

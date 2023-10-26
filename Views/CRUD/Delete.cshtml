@@ -1,0 +1,39 @@
+@model examplemvc.Models.Post
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '@TempData["SuccessMessage"]'
+        });
+    </script>
+}
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '@TempData["ErrorMessage"]'
+        });
+    </script>
+}
+
+<div class="container">
+    <h2 class="text-center">Delete Post</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="alert alert-danger" role="alert">
+                Are you sure you want to delete the post with title: <strong>@Model.Title</strong>?
+            </div>
+            <form asp-action="DeletePost" asp-route-id="@Model.Id" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>

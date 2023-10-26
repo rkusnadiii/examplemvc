@@ -1,0 +1,40 @@
+@page
+@model List<Post>
+
+<h2>Posts</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Body
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>
+                    @post.Title
+                </td>
+                <td>
+                    @post.Body
+                </td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@post.Id">Edit</a> |
+                    <a asp-page="Details" asp-route-id="@post.Id">Details</a> |
+                    <a asp-page="Delete" asp-route-id="@post.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

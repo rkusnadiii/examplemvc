@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '@TempData["SuccessMessage"]'
+        });
+</script>
+}
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '@TempData["ErrorMessage"]'
+        });
+</script>
+}
+
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="post" action="/Home/Login">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" /><br />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" /><br />
+
+        <button type="submit">Login</button>
+    </form>
+    <a href="@Url.Action("Register")">
+        <button type="button">Register</button>
+    </a>
+</body>
+</html>

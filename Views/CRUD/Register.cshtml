@@ -1,0 +1,40 @@
+<!-- Views/CRUD/Register.cshtml -->
+<!DOCTYPE html>
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '@TempData["SuccessMessage"]'
+        });
+</script>
+}
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '@TempData["ErrorMessage"]'
+        });
+</script>
+}
+
+<html>
+<head>
+    <title>Register Page</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="post" action="/Home/Register">
+        <label for="registerUsername">Username:</label>
+        <input type="text" id="registerUsername" name="registerUsername" /><br />
+
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" name="registerPassword" /><br />
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

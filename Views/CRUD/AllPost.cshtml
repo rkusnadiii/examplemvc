@@ -1,0 +1,28 @@
+@model IEnumerable<examplemvc.Models.Post>
+
+    <h2>All Posts</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Title</td>
+                <td>@post.Body</td>
+                <td>
+                    <a href="@Url.Action("ReadPost", new { id = post.Id })">View</a> |
+                    <a href="@Url.Action("Update","Home", new { id = post.Id })">Edit</a> |
+                    <a href="@Url.Action("Delete","Home", new { id = post.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <a href="@Url.Action("Create","Home")" class="btn btn-primary">Create New Post</a>
